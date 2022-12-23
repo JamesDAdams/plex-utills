@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block main %}
+{% block content %}
               <!-- ENTER your content here -->
 
 
@@ -30,7 +30,11 @@
                                 <th scope="row">Films Library</th>
                                 <td>{{ plex.filmslibrary }}</td>
                               </tr>
-                              {% endfor %}                         
+                              {% endfor %}     
+                              <tr>
+                                <th scope='row'>Version</th>
+                                <td>{{ version }}</td>
+                              </tr>                    
                               
                             </table>
                           </div>
@@ -56,14 +60,27 @@
                           <td>{{ filmtitle }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Plex Path</th>
+                            <th scope="row" rowspan='2'>Plex Path</th>
                             <td>{{ plex_filepath }}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Plex-utills path</th>
-                          <td>{{ newdir }}</td>
-                        </tr>                        
+                          <td>This is the path where your Plex Server sees your media</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" rowspan='2'>Plex-utills path</th>
+                          <td>{{ newdir }} </td>
+                        </tr>
                         
+                        <tr>
+                          <td>This is the path where Plex-Utills expects to see your media sees your media. (Plex-Utills can see this file: {{ exists }})</td>
+                        </tr>                     
+                        <tr>
+                          <th scope="row" rowspan='2'>/films Content</th>
+                          <td>{{ mpath }}</td>
+                        </tr>      
+                        <tr>
+                          <td>This is the content of your /films directory inside Plex-utills. This is useful for figuring out whether you need to use the manual override for your plexpath.</td>
+                        </tr>                   
                       </table>
 
                         <div class='container'>
@@ -72,13 +89,13 @@
                                 <div class="col-lg-3 col-md-4 col-6">
                                     <a class="d-block mb-4 h-auto">
                                         <h4>Current Poster</h4>
-                                        <img class="img-fluid img-thumbnail" src="/static/img/poster.png" alt="">
+                                        <img class="img-fluid img-thumbnail" src="{{ current_poster }}" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-6">
                                     <a class="d-block mb-4 h-auto">
                                         <h4>Backup Poster</h4>
-                                        <img class="img-fluid img-thumbnail" src="/static/img/poster_bak.png" alt="">
+                                        <img class="img-fluid img-thumbnail" src="{{ backup_poster }}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -87,7 +104,16 @@
 
                     </div>
                 </div>
-
+                <div class="card-body">
+                  <p>
+                      <a href="/export_support" class="btn btn-primary btn-icon-split" id="export_support">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                          <span class="text">Export Support Files</span>
+                      </a>
+                  </p>
+              </div>
                   
               
 
